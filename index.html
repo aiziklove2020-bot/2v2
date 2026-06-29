@@ -7,55 +7,90 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap');
+        
         body { 
             font-family: 'Assistant', sans-serif; 
-            background-color: #050505; 
-            color: #e5e7eb; 
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             min-height: 100vh;
+            color: #e5e7eb; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-        .glass { background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.3); }
+        
+        /* אפקט זכוכית יוקרתי */
+        .glass { 
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+        
         .gold-text { color: #d4af37; }
-        .btn-gold { background: linear-gradient(135deg, #d4af37 0%, #99741f 100%); color: #000; font-weight: bold; transition: 0.3s; }
+        .btn-gold { 
+            background: linear-gradient(135deg, #d4af37 0%, #99741f 100%); 
+            color: #000; 
+            font-weight: bold; 
+            transition: 0.3s; 
+        }
         .btn-gold:hover { opacity: 0.9; transform: translateY(-2px); }
-        .input-style { background: #111; border: 1px solid #333; transition: 0.3s; color: white; }
-        .input-style:focus { border-color: #d4af37; outline: none; }
-        .transition-all { transition: all 0.4s ease; }
+        
+        .input-style { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid #555; 
+            transition: 0.3s; 
+            color: white; 
+            width: 100%; 
+            padding: 12px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+        }
+        .input-style:focus { border-color: #d4af37; outline: none; background: rgba(0,0,0,0.5); }
+        
+        .back-btn { color: #aaa; transition: 0.3s; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+        .back-btn:hover { color: #fff; }
     </style>
 </head>
-<body class="min-h-screen">
-    <nav class="p-6 text-center text-3xl font-bold tracking-widest text-white mt-10">CLUB 2V2</nav>
-    
-    <main class="max-w-2xl mx-auto px-6 py-10">
-        <div id="hero-section" class="text-center">
-            <h1 class="text-5xl font-bold mb-6 text-white leading-tight">המרחב שבו פנטזיה פוגשת מציאות</h1>
-            <p class="text-xl text-gray-400 mb-10">מועדון 2v2 הוא בית לקהילה שנבחרה בקפידה. יוקרה, דיסקרטיות וסטנדרט בלתי מתפשר.</p>
-            <button onclick="showSection('selection-box')" class="btn-gold px-12 py-4 rounded-full text-lg shadow-lg">הגש מועמדות</button>
+<body>
+
+    <div class="max-w-lg w-full">
+        <!-- Hero Section -->
+        <div id="hero-section" class="text-center glass p-10 rounded-3xl">
+            <h1 class="text-5xl font-bold mb-6 text-white leading-tight">CLUB 2V2</h1>
+            <p class="text-lg text-gray-300 mb-10">המרחב שבו פנטזיה פוגשת מציאות.<br>אקסקלוסיביות, דיסקרטיות וסטנדרט בלתי מתפשר.</p>
+            <button onclick="showSection('selection-box')" class="btn-gold px-12 py-4 rounded-full text-lg w-full">הגש מועמדות למסיבה</button>
         </div>
 
         <!-- Selection Section -->
-        <div id="selection-box" class="hidden glass p-10 rounded-3xl shadow-2xl">
-            <button onclick="showSection('hero-section')" class="text-gray-400 mb-6 hover:text-white transition flex items-center gap-2">← חזרה</button>
-            <h2 class="text-3xl font-bold text-center mb-8">איך תרצה/י להירשם?</h2>
+        <div id="selection-box" class="hidden glass p-8 rounded-3xl">
+            <div onclick="showSection('hero-section')" class="back-btn">← חזרה לעמוד הבית</div>
+            <h2 class="text-2xl font-bold text-center mb-8">בחר/י מסלול רישום:</h2>
             <div class="space-y-4">
-                <button onclick="selectCategory('סינגל')" class="w-full p-6 bg-[#1a1a1a] rounded-xl text-right hover:border-[#d4af37] border border-gray-800 transition">סינגל מחפש איזון</button>
-                <button onclick="selectCategory('סינגלית')" class="w-full p-6 bg-[#1a1a1a] rounded-xl text-right hover:border-[#d4af37] border border-gray-800 transition">סינגלית מחפשת איזון ואיסוף</button>
-                <button onclick="selectCategory('זוג')" class="w-full p-6 bg-[#1a1a1a] rounded-xl text-right hover:border-[#d4af37] border border-gray-800 transition">זוג המעוניין להירשם</button>
+                <button onclick="selectCategory('סינגל מחפש איזון')" class="w-full p-4 bg-white/5 rounded-xl text-right hover:border-[#d4af37] border border-gray-700 transition">סינגל מחפש איזון</button>
+                <button onclick="selectCategory('סינגלית מחפשת איזון ואיסוף')" class="w-full p-4 bg-white/5 rounded-xl text-right hover:border-[#d4af37] border border-gray-700 transition">סינגלית מחפשת איזון ואיסוף</button>
+                <button onclick="selectCategory('זוג המעוניין להירשם')" class="w-full p-4 bg-white/5 rounded-xl text-right hover:border-[#d4af37] border border-gray-700 transition">זוג המעוניין להירשם</button>
             </div>
         </div>
 
         <!-- Form Section -->
-        <div id="form-box" class="hidden glass p-10 rounded-3xl shadow-2xl">
-            <button onclick="showSection('selection-box')" class="text-gray-400 mb-6 hover:text-white transition flex items-center gap-2">← חזרה לבחירה</button>
-            <form id="reg-form" class="space-y-6">
+        <div id="form-box" class="hidden glass p-8 rounded-3xl">
+            <div onclick="showSection('selection-box')" class="back-btn">← חזרה לבחירה</div>
+            <h2 class="text-xl font-bold text-[#d4af37] mb-6" id="form-title"></h2>
+            <form id="reg-form" class="space-y-4">
                 <div id="dynamic-fields"></div>
-                <button type="submit" class="w-full btn-gold py-4 rounded-xl mt-6 text-xl">שלח בקשת מועמדות</button>
+                <button type="submit" class="w-full btn-gold py-4 rounded-xl mt-4 text-xl">שלח בקשת מועמדות</button>
             </form>
         </div>
-    </main>
+        
+        <!-- Success Message -->
+        <div id="success-box" class="hidden glass p-10 rounded-3xl text-center">
+            <h2 class="text-3xl text-[#d4af37] mb-4">תודה!</h2>
+            <p>הבקשה התקבלה. אנו נבחן את הפרטים וניצור קשר בהקדם.</p>
+            <button onclick="location.reload()" class="w-full border border-gray-600 mt-8 py-3 rounded-xl hover:bg-white hover:text-black transition">חזרה לעמוד הבית</button>
+        </div>
+    </div>
 
     <script>
         let currentType = '';
@@ -64,28 +99,33 @@
             document.getElementById('hero-section').classList.add('hidden');
             document.getElementById('selection-box').classList.add('hidden');
             document.getElementById('form-box').classList.add('hidden');
+            document.getElementById('success-box').classList.add('hidden');
             document.getElementById(id).classList.remove('hidden');
         }
 
         function selectCategory(type) {
             currentType = type;
+            document.getElementById('form-title').innerText = type;
             showSection('form-box');
             
             const container = document.getElementById('dynamic-fields');
+            
+            // בסיס לכל טופס
             let fields = `
-                <input type="text" placeholder="שם מלא *" required class="w-full p-4 rounded-xl input-style">
-                <input type="tel" placeholder="טלפון *" required class="w-full p-4 rounded-xl input-style">
-                <input type="text" placeholder="טלגרם (username@) *" required class="w-full p-4 rounded-xl input-style">
+                <input type="text" name="fullName" placeholder="שם מלא *" required class="input-style">
+                <input type="tel" name="phone" placeholder="טלפון *" required class="input-style">
+                <input type="text" name="telegram" placeholder="טלגרם (username@) *" required class="input-style">
             `;
 
-            if (type === 'סינגלית') {
-                fields += `<input type="text" placeholder="כתובת לאיסוף *" required class="w-full p-4 rounded-xl input-style">`;
-            } else if (type === 'זוג') {
+            // שדות מותאמים לפי סוג
+            if (type === 'סינגלית מחפשת איזון ואיסוף') {
+                fields += `<input type="text" name="address" placeholder="כתובת לאיסוף *" required class="input-style">`;
+            } else if (type === 'זוג המעוניין להירשם') {
                 fields += `
-                    <div class="border-t border-gray-700 pt-6 mt-6">
-                        <h4 class="font-bold mb-4 text-[#d4af37]">פרטי בן/בת הזוג</h4>
-                        <input type="text" placeholder="שם מלא בן/בת זוג *" required class="w-full p-4 rounded-xl input-style">
-                        <input type="tel" placeholder="טלפון בן/בת זוג *" required class="w-full p-4 rounded-xl input-style">
+                    <div class="border-t border-gray-700 pt-4 mt-4">
+                        <h4 class="font-bold mb-3 text-[#d4af37]">פרטי בן/בת הזוג</h4>
+                        <input type="text" name="partnerName" placeholder="שם מלא בן/בת זוג *" required class="input-style">
+                        <input type="tel" name="partnerPhone" placeholder="טלפון בן/בת זוג *" required class="input-style">
                     </div>
                 `;
             }
@@ -97,19 +137,25 @@
             const token = "8726417166:AAEPgyYBUzyeCFUSuoMcKwSuVWOzkFWjXwc";
             const chatId = "-5116802000";
             
-            const inputs = Array.from(e.target.querySelectorAll('input')).map(i => i.placeholder + ": " + i.value).join('\n');
-            const message = `הרשמה חדשה ל-${currentType}:\n\n${inputs}`;
+            const formData = new FormData(e.target);
+            let message = `🎯 הרשמה חדשה למועדון 2V2\nקטגוריה: ${currentType}\n\n`;
+            
+            formData.forEach((value, key) => {
+                const inputElement = e.target.querySelector(`[name="${key}"]`);
+                const label = inputElement ? inputElement.placeholder.replace(' *', '') : key;
+                message += `${label}: ${value}\n`;
+            });
 
             fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: chatId, text: message })
-            }).then(() => {
-                document.getElementById('form-box').innerHTML = `
-                    <h2 class="text-3xl text-center text-[#d4af37]">הבקשה התקבלה!</h2>
-                    <p class="text-center mt-4">אנו נבחן את הפרטים וניצור קשר.</p>
-                    <button onclick="location.reload()" class="w-full border border-white mt-8 py-3 rounded-xl hover:bg-white hover:text-black transition">חזרה לעמוד הבית</button>
-                `;
+            }).then(response => {
+                if(response.ok) {
+                    showSection('success-box');
+                } else {
+                    alert('שגיאה בשליחה. אנא נסה שוב.');
+                }
             });
         };
     </script>
